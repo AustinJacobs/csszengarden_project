@@ -193,6 +193,15 @@
 // 	height: 110px;
 // 	}
 
+// import fonts
+@import url('https://fonts.googleapis.com/css2?family=Esteban&family=Montserrat&family=Raleway:wght@200&display=swap');
+
+//font families
+// font-family: 'Esteban', serif;
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Raleway', sans-serif;
+
+
 //set breakpoint sizes
 $break-small: 20em;
 $break-medium: 31em;
@@ -216,10 +225,14 @@ $break-large: 60em;
 			.intro {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				
+
+			.main {
+				display: grid;
+				grid-template-columns: 1fr;
 			}
 		}
 	}
+}
 
 	@else {
 		@media ($break) {
