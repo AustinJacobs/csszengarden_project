@@ -205,17 +205,19 @@ $details-font: 'Raleway',
 sans-serif;
 
 // font size variables
-$big-heading-size: 2.5em;
-$heading-size: 1.3em;
+$big-heading-size: 3em;
+$heading-size: 1.7em;
 $paragraph-size: 1em;
 
 // margin variables
 $base-margin: 10px;
+$double-margin: 20px;
 $hr-margin: 15px;
 
 // padding variables
 $base-padding: 10px;
 $main-icon-padding: 30px;
+$double-padding: 20px;
 
 // color variables
 $color-one: #e1ecf7;
@@ -255,6 +257,7 @@ a {
 // body styles
 body {
     background-color: $color-one;
+    line-height: 1.5;
 }
 
 // MIXINS 
@@ -343,7 +346,11 @@ body {
         text-indent: 0;
         display: block;
         line-height: initial;
-        font-size: $big-heading-size;
+        font-size: 1.5em;
+    }
+
+    header h2 {
+        font-size: 1.4em;
     }
 
     header h2::after {
@@ -353,18 +360,54 @@ body {
     .preamble h3::after {
         @include hr;
     }
+    
+    header {
+        padding-left: $double-padding;
+        padding-top: $double-padding;
+    }
 
     .summary {
         grid-column: 1/2;
+        padding-left: $double-padding;
+    }
+
+    .summary p {
+        font-family: $details-font;
+        font-size: 1.2em;
+    }
+
+    .summary p:nth-last-of-type(1) {
+        font-size: 1em;
     }
 
     .preamble {
         grid-column: 1/2;
+        padding-left: $double-padding;
     }
 
     @include for-tablet-landscape-up {
         grid-template-columns: 1fr 1fr;
 
+        .summary p:nth-last-of-type(1) {
+            font-size: 1.2em;
+        }
+
+        header h1::after {
+            content: 'CSS Zen Ocean';
+            text-indent: 0;
+            display: block;
+            line-height: initial;
+            font-size: $big-heading-size;
+        }
+
+        header h2 {
+            font-size: 2em;
+        }
+
+        .summary p {
+            font-family: $details-font;
+            font-size: $heading-size;
+        }
     }
 }
 
@@ -380,7 +423,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     background-color: $color-one;
-    margin-top: -5px;
+    margin-top: -30px;
+    padding: $base-padding;
 
     h3::after {
         @include hr;
@@ -389,16 +433,21 @@ body {
     .explanation::before {
         content: url('../assets/icons/ship-solid.svg');
         @include main-icon-style;
+        padding-bottom: 40px;
     }
 
     .participation::before {
         content: url('../assets/icons/water-solid.svg');
         @include main-icon-style;
+        padding-bottom: 40px;
+        margin-top: $double-margin;
     }
 
     .benefits::before {
         content: url('../assets/icons/sun-solid.svg');
         @include main-icon-style;
+        padding-bottom: 60px;
+        margin-top: 40px;
     }
 
     .benefits::after {
@@ -409,6 +458,8 @@ body {
     .requirements::after {
         content: url('../assets/icons/umbrella-beach-solid.svg');
         @include main-icon-style;
+        margin-top: 40px;
+        padding-bottom: 40px;
     }
 
     .explanation {
@@ -429,6 +480,7 @@ body {
     .requirements {
         grid-column: 1/2;
         grid-row: 4/5;
+        margin-top: 40px;
     }
 
     footer {
@@ -448,23 +500,44 @@ body {
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
         .explanation {
-            grid-column: 2/4;
+            grid-column: 3/4;
             grid-row: 1/2;
         }
 
         .participation {
-            grid-column: 2/4;
+            grid-column: 2/3;
             grid-row: 2/3;
+            margin-top: -300px;
         }
 
         .benefits {
-            grid-column: 2/4;
+            grid-column: 3/4;
             grid-row: 3/4;
+            margin-top: -240px;
         }
 
         .requirements {
             grid-column: 2/4;
             grid-row: 4/5;
+        }
+
+        .benefits::after {
+            content: '';
+            display: none;
+        }
+
+        .participation::before {
+            content: url('../assets/icons/water-solid.svg');
+            @include main-icon-style;
+            padding-bottom: 60px;
+            margin-top: 20px;
+        }
+    
+        .benefits::before {
+            content: url('../assets/icons/sun-solid.svg');
+            @include main-icon-style;
+            padding-bottom: 130px;
+            margin-top: -120px;
         }
 
         footer {
