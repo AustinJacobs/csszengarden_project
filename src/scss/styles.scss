@@ -246,6 +246,16 @@ p {
     padding-top: $base-padding;
 }
 
+// a styles
+a {
+    font-family: $details-font;
+}
+
+// body styles
+body {
+    background-color: $color-one;
+}
+
 // MIXINS 
 //set breakpoint sizes
 @mixin for-phone-only {
@@ -304,9 +314,22 @@ p {
     padding-top: $main-icon-padding;
 }
 
+// wave keyframe
+@keyframes animateWave {
+    0% {
+        transform: scale(1, 0);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
 .intro {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: $color-seven;
 
     header h1 {
         text-indent: -9999px;
@@ -330,14 +353,33 @@ p {
         @include hr;
     }
 
+    .summary {
+        grid-column: 1/2;
+    }
+
+    .preamble {
+        grid-column: 1/2;
+    }
+
     @include for-tablet-landscape-up {
         grid-template-columns: 1fr 1fr;
+
     }
+}
+
+.intro::after {
+    content: url('../assets/icons/wave.svg');
+    grid-column: 1/3;
+    display: block;
+    transform-origin: bottom;
+    animation: animateWave 1500ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 .main {
     display: grid;
     grid-template-columns: 1fr;
+    background-color: $color-one;
+    margin-top: -5px;
 
     h3::after {
         @include hr;
@@ -368,35 +410,45 @@ p {
         @include main-icon-style;
     }
 
+    footer {
+        grid-row: 5/6;
+        grid-column: 2/4;
+        justify-self: center;
+        margin-top: $base-margin;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: $color-six;
+        margin: $base-margin;
+    }
+
     @include for-tablet-landscape-up {
         grid-template-columns: 1fr 1fr 1fr 1fr;
 
         .explanation {
-            grid-column: 3/4;
+            grid-column: 2/4;
+            grid-row: 1/2;
         }
 
         .participation {
-            grid-column: 2/3;
+            grid-column: 2/4;
+            grid-row: 2/3;
+        }
+
+        .benefits {
+            grid-column: 2/4;
+            grid-row: 3/4;
         }
 
         .requirements {
             grid-column: 2/4;
-        }
-
-        .participation::after {
-            content: url('../assets/icons/fish-solid.svg');
-            @include main-icon-style;
-        }
-
-        .benefits::after {
-            content: '';
+            grid-row: 4/5;
         }
     }
 }
 
 .sidebar {
-    grid-column: 1/2;
-
     // .wrapper .design-selection h3 {
     //     text-indent: -9999px;
     //     line-height: 0;
