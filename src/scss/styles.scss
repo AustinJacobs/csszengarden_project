@@ -196,47 +196,222 @@
 // import fonts
 @import url('https://fonts.googleapis.com/css2?family=Esteban&family=Montserrat&family=Raleway:wght@200&display=swap');
 
-//font families
-// font-family: 'Esteban', serif;
-// font-family: 'Montserrat', sans-serif;
-// font-family: 'Raleway', sans-serif;
+// font variables
+$heading-font: 'Montserrat',
+sans-serif;
+$paragraph-font: 'Esteban',
+serif;
+$details-font: 'Raleway',
+sans-serif;
 
+// font size variables
+$big-heading-size: 2.5em;
+$heading-size: 1.3em;
+$paragraph-size: 1em;
 
-//set breakpoint sizes
-$break-small: 20em;
-$break-medium: 31em;
-$break-large: 60em;
+// margin variables
+$base-margin: 10px;
+$hr-margin: 15px;
 
-@mixin breakpoint($break) {
-	@if $break==large {
-		@media (max-width: $break-large) {
-			@content;
-		}
-	}
+// padding variables
+$base-padding: 10px;
+$main-icon-padding: 30px;
 
-	@else if $break==medium {
-		@media (max-width: $break-medium) {
-			@content;
-		}
-	}
+// color variables
+$color-one: #e1ecf7;
+$color-two: #0077B6;
+$color-three: #0096c7;
+$color-four: #023E8a;
+$color-five: #03045e;
+$color-six: #ff6d00;
+$color-seven: #ffffff;
 
-	@else if $break==small {
-		@media (max-width: $break-small) {
-			.intro {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-
-			.main {
-				display: grid;
-				grid-template-columns: 1fr;
-			}
-		}
-	}
+// heading styles
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $heading-font;
+    font-size: $heading-size;
+    margin: $base-margin;
 }
 
-	@else {
-		@media ($break) {
-			@content;
-		}
-	}
+// paragraph styles 
+p {
+    font-family: $paragraph-font;
+    font-size: $paragraph-size;
+    margin: $base-margin;
+    padding-top: $base-padding;
+}
+
+// MIXINS 
+//set breakpoint sizes
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
+
+// usage
+//   .my-box {
+//     padding: 10px;
+
+//     @include for-desktop-up {
+//       padding: 20px;
+//     }
+//   }
+
+@mixin hr {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: $hr-margin;
+    background-color: $color-six;
+}
+
+@mixin main-icon-style {
+    display: block;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    padding-top: $main-icon-padding;
+}
+
+.intro {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    header h1 {
+        text-indent: -9999px;
+        line-height: 0;
+        /* Collapse the original line */
+    }
+
+    header h1::after {
+        content: 'CSS Zen Ocean';
+        text-indent: 0;
+        display: block;
+        line-height: initial;
+        font-size: $big-heading-size;
+    }
+
+    header h2::after {
+        @include hr;
+    }
+
+    .preamble h3::after {
+        @include hr;
+    }
+
+    @include for-tablet-landscape-up {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    h3::after {
+        @include hr;
+    }
+
+    .explanation::before {
+        content: url('../assets/icons/ship-solid.svg');
+        @include main-icon-style;
+    }
+
+    .participation::before {
+        content: url('../assets/icons/water-solid.svg');
+        @include main-icon-style;
+    }
+
+    .benefits::before {
+        content: url('../assets/icons/sun-solid.svg');
+        @include main-icon-style;
+    }
+
+    .benefits::after {
+        content: url('../assets/icons/fish-solid.svg');
+        @include main-icon-style;
+    }
+
+    .requirements::after {
+        content: url('../assets/icons/umbrella-beach-solid.svg');
+        @include main-icon-style;
+    }
+
+    @include for-tablet-landscape-up {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        .explanation {
+            grid-column: 3/4;
+        }
+
+        .participation {
+            grid-column: 2/3;
+        }
+
+        .requirements {
+            grid-column: 2/4;
+        }
+
+        .participation::after {
+            content: url('../assets/icons/fish-solid.svg');
+            @include main-icon-style;
+        }
+
+        .benefits::after {
+            content: '';
+        }
+    }
+}
+
+.sidebar {
+    grid-column: 1/2;
+
+    // .wrapper .design-selection h3 {
+    //     text-indent: -9999px;
+    //     line-height: 0;
+    //     /* Collapse the original line */
+    // }
+
+    // .wrapper .design-selection h3::after {
+    //     content: 'Deepsea Treasures';
+    //     text-indent: 0;
+    //     display: block;
+    //     line-height: initial;
+    //     font-size: $heading-size;
+    // }
+
+    .wrapper .design-selection h3::after {
+        @include hr;
+    }
 }
