@@ -140,16 +140,21 @@ body {
   -ms-grid-column-span: 1;
   grid-column: 1/2;
   padding-left: 20px;
-  margin-top: 40px;
 }
 
 @media (min-width: 900px) {
   .intro {
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
+    -ms-grid-columns: 1fr 40%;
+        grid-template-columns: 1fr 40%;
+  }
+  .intro .preamble {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    padding-right: 20px;
   }
   .intro .summary p:nth-last-of-type(1) {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   .intro header h1::after {
     content: 'CSS Zen Ocean';
@@ -163,7 +168,7 @@ body {
   }
   .intro .summary p {
     font-family: "Raleway", sans-serif;
-    font-size: 1.7em;
+    font-size: 1.3em;
   }
 }
 
@@ -301,9 +306,6 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/2;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1/2;
   -ms-grid-column-align: center;
       justify-self: center;
   margin-top: 10px;
@@ -361,6 +363,9 @@ body {
   }
   .main .benefits::after {
     content: '';
+    display: none;
+  }
+  .main .explanation::before {
     display: none;
   }
   .main .participation::before {
@@ -428,11 +433,11 @@ body {
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   gap: 5px;
-  text-align: left;
+  justify-items: center;
 }
 
 .sidebar .wrapper .design-selection nav ul li {
-  padding-left: 20px;
+  text-align: center;
   color: #ff6d00;
   font-family: "Raleway", sans-serif;
   text-transform: capitalize;
@@ -452,6 +457,35 @@ body {
 .sidebar .wrapper .design-selection nav ul .design-name::after {
   content: "\A";
   white-space: pre;
+}
+
+@media (min-width: 900px) {
+  .sidebar .wrapper .design-selection h3 {
+    text-align: left;
+    margin: 0;
+    margin-left: 40px;
+  }
+  .sidebar .wrapper .design-selection h3::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 15px;
+    background-color: #ff6d00;
+    margin-left: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .sidebar .wrapper .design-selection nav ul {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    gap: 5px;
+    justify-items: start;
+    margin-left: 40px;
+  }
+  .sidebar .wrapper .design-selection nav ul li {
+    text-align: left;
+  }
 }
 
 .sidebar .wrapper .design-archives h3 {
