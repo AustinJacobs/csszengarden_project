@@ -365,6 +365,10 @@ body {
             display: none;
         }
 
+        .explanation::before {
+            display: none;
+        }
+
         .participation::before {
             content: url('../assets/icons/water-solid.svg');
             @include main-icon-style;
