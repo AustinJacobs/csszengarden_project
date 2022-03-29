@@ -45,6 +45,7 @@ h6 {
     font-family: $heading-font;
     font-size: $heading-size;
     margin: $base-margin;
+    color: $color-three;
 }
 
 // paragraph styles 
@@ -53,6 +54,7 @@ p {
     font-size: $paragraph-size;
     margin: $base-margin;
     padding-top: $base-padding;
+    color: $color-five;
 }
 
 // a styles
@@ -173,10 +175,12 @@ body {
         display: block;
         line-height: initial;
         font-size: 1.5em;
+        color: $color-two;
     }
 
     header h2 {
         font-size: 1.4em;
+        color: $color-three;
     }
 
     header h2::after {
@@ -200,6 +204,7 @@ body {
     .summary p {
         font-family: $details-font;
         font-size: 1.2em;
+        color: $color-five;
     }
 
     .summary p:nth-last-of-type(1) {
@@ -330,6 +335,7 @@ body {
         text-decoration: none;
         color: $color-six;
         margin: $base-margin;
+        font-size: 1.5em;
     }
 
     @include for-tablet-landscape-up {
